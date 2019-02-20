@@ -1,0 +1,17 @@
+@import "../../../utils/utils";
+
+header {
+  width: 100%;
+  height: 5rem;
+  background: $headerColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h3 {
+    margin: 0;
+    font-family: $headerFont;
+    font-size: 2.5rem;
+  }
+
+}
