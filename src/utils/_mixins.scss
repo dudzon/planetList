@@ -1,0 +1,12 @@
+@import"./variables";
+
+@mixin flexItemDisplay {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@mixin textCenter {
+  text-align: center;
+  font-family: $secondaryFont;
+}

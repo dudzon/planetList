@@ -3,7 +3,7 @@
 header {
   width: 100%;
   height: 5rem;
-  background: $headerColor;
+  background: $mainThemeColor;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,6 +12,7 @@ header {
     margin: 0;
     font-family: $headerFont;
     font-size: 2.5rem;
+    letter-spacing: .2rem;
   }
 
 }

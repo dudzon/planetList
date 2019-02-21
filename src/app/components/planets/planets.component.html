@@ -1,3 +1,5 @@
-<p>
-  planets works!
-</p>
+<section class="planets">
+  <div class="planets__wrapper">
+    <app-planet-item *ngFor="let planet of planets" [planet]='planet'></app-planet-item>
+  </div>
+</section>

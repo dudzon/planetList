@@ -1,0 +1,131 @@
+@import "./../../../utils/utils";
+
+.planet {
+  height: 100%;
+  width: 90%;
+  border: 3px solid $mainThemeColor;
+  //   border-top-color: $headerColor;
+  //   border-left-color: $headerColor;
+  //   border-bottom-color: #000;
+  //   border-right-color: #000;
+  margin: 0 auto;
+  border-radius: 10px;
+
+  .planet__name {
+    width: 100%;
+    height: 3rem;
+    background: $mainThemeColor;
+    font-size: 1.5rem;
+    line-height: 1.8;
+    font-family: $headerFont;
+    letter-spacing: .2;
+    text-align: center;
+  }
+
+  &__wrapper {
+    width: 90%;
+    margin: 0 auto;
+
+    .planet__periods {
+      display: flex;
+      width: 100%;
+      height: 4rem;
+      margin-top: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: .625rem;
+      border-bottom: 2px solid $mainThemeColor;
+
+      .planet__rotation-period,
+      .planet__orbital-period {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+
+
+        p {
+          @include textCenter;
+          margin: .5rem 0;
+        }
+
+        span {
+          @include textCenter;
+        }
+      }
+    }
+
+    // Planet periods ends
+
+    .planet__climate,
+    .planet__terrain {
+      @include flexItemDisplay;
+      height: 4rem;
+
+      h4 {
+        margin: .3125rem 0;
+        font-weight: bold;
+        @include textCenter;
+      }
+
+      p {
+        margin: 0;
+        @include textCenter;
+      }
+    }
+
+    .planet__terrain {
+      border-bottom: 2px solid $mainThemeColor;
+      padding-bottom: .2rem;
+    }
+
+    .planet__population {
+      margin-top: .5rem;
+      @include flexItemDisplay;
+
+      h4 {
+        margin: .3125rem 0;
+        font-weight: bold;
+        @include textCenter;
+      }
+
+      p {
+        margin: 0;
+        @include textCenter;
+      }
+    }
+
+    .planet__details-button {
+      margin: 1rem auto 0;
+      width: 40%;
+      height: 2rem;
+      display: block;
+      background: $mainThemeColor;
+      color: $secondaryThemeColor;
+      border: none;
+      border-radius: 5px;
+      text-transform: uppercase;
+      outline-color: $mainThemeColor;
+      font-family: $headerFont;
+      cursor: pointer;
+
+      &:hover {
+        background: $secondaryThemeColor;
+        color: $mainThemeColor;
+      }
+
+      &:focus {
+        outline: 0
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        width: 100%;
+      }
+    }
+
+  }
+
+  //   Planet wrapper ends
+}
