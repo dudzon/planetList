@@ -2,7 +2,7 @@
 
 .planets {
   width: 100%;
-  margin: 2rem 0;
+  margin: 7rem 0 2rem;
 
   &__wrapper {
     width: 80%;
@@ -27,7 +27,6 @@
         font-size: 1.5rem;
         line-height: 1.8;
         font-family: $headerFont;
-        letter-spacing: .2;
         text-align: center;
       }
 
@@ -133,4 +132,50 @@
     }
   }
 
+}
+
+
+@media screen and (max-width:1199px) {
+  .planets__wrapper {
+    grid-template-columns: repeat(3, minmax(200px, 300px));
+  }
+}
+
+@media screen and (max-width:768px) {
+  .planets__wrapper {
+    grid-template-columns: repeat(2, minmax(200px, 300px));
+  }
+}
+
+@media screen and (max-width:576px) {
+  .planets__wrapper {
+    display: block;
+    width: 60%;
+
+    .planet {
+      margin: 0 auto 2rem;
+
+      &__wrapper {
+        .planet__climate {
+          height: 3rem;
+        }
+
+        .planet__details-button {
+          margin-bottom: 1rem;
+        }
+
+      }
+    }
+
+    h4,
+    p {
+      font-size: .875rem;
+    }
+  }
+}
+
+@media screen and (max-width:399px) {
+  .planets__wrapper {
+    width: 80%;
+  }
 }
