@@ -1,40 +1,31 @@
 @import "./../../../utils/utils";
 
 .planet {
-  height: 100%;
-  width: 90%;
-  border: 3px solid $mainThemeColor;
-  margin: 0 auto;
-  border-radius: 10px;
+  height: 60vh;
+  width: 50%;
+  @include planet;
+
+  &__button--back {
+    margin: 7rem auto 0;
+    display: block;
+    width: 5rem;
+    @include button;
+  }
 
   .planet__name {
-    width: 100%;
-    height: 3rem;
-    background: $mainThemeColor;
-    font-size: 1.5rem;
-    line-height: 1.8;
-    font-family: $headerFont;
-    letter-spacing: .2;
-    text-align: center;
+    @include planetName;
   }
 
   &__wrapper {
-    width: 90%;
-    margin: 0 auto;
+    @include planetWrapper;
 
     .planet__periods {
-      display: flex;
-      width: 100%;
-      height: 4rem;
-      margin-top: 1rem;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: .625rem;
-      border-bottom: 2px solid $mainThemeColor;
+      @include planetDetailsWrapper;
 
       .planet__rotation-period,
-      .planet__orbital-period {
-        width: 45%;
+      .planet__orbital-period,
+      .planet__diameter {
+        width: 35%;
         display: flex;
         flex-direction: column;
 
@@ -52,69 +43,137 @@
 
     // Planet periods ends
 
-    .planet__climate,
-    .planet__terrain {
-      @include flexItemDisplay;
-      height: 4rem;
+    .planet__conditions {
+      @include planetDetailsWrapper;
+      height: 7rem;
 
-      h4 {
-        margin: .3125rem 0;
-        font-weight: bold;
-        @include textCenter;
+      .planet__climate,
+      .planet__terrain,
+      .planet__gravity,
+      .planet__surface-water {
+        @include flexItemDisplay;
+        height: 100%;
+        width: 20%;
+
+        h4 {
+          @include planetDetailsUtil;
+          @include textCenter;
+        }
+
+        p {
+          margin: 0;
+          @include textCenter;
+        }
       }
 
-      p {
-        margin: 0;
-        @include textCenter;
+    }
+
+    //  Planet conditions ends
+
+
+    .planet__additional-data {
+      @include planetDetailsWrapper;
+      border-bottom: none;
+      padding-bottom: 0;
+
+      .planet__residents,
+      .planet__films,
+      .planet__population {
+        @include flexItemDisplay;
+        width: 30%;
+
+        h4 {
+          @include planetDetailsUtil;
+          @include textCenter;
+        }
+
+        p {
+          margin: 0;
+          @include textCenter;
+        }
       }
     }
 
-    .planet__terrain {
-      border-bottom: 2px solid $mainThemeColor;
-      padding-bottom: .2rem;
-    }
-
-    .planet__population {
-      margin-top: .5rem;
-      @include flexItemDisplay;
-
-      h4 {
-        margin: .3125rem 0;
-        font-weight: bold;
-        @include textCenter;
-      }
-
-      p {
-        margin: 0;
-        @include textCenter;
-      }
-    }
-
-    .planet__details-button {
-      margin: 1rem auto 0;
-      width: 40%;
-      height: 2rem;
-      display: block;
-      background: $mainThemeColor;
-      color: $secondaryThemeColor;
-      border: none;
-      border-radius: 5px;
-      text-transform: uppercase;
-      outline-color: $mainThemeColor;
-      font-family: $headerFont;
-      cursor: pointer;
-
-      &:hover {
-        background: $secondaryThemeColor;
-        color: $mainThemeColor;
-      }
-
-      &:focus {
-        outline: 0
-      }
-    }
+    // Planet additional data
 
   }
 
   //   Planet wrapper ends
+}
+
+@media screen and (min-width:1499px) {
+  .planet {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .planet {
+    height: auto;
+
+    &__wrapper {
+      .planet__conditions {
+        @include mobileBlock;
+
+        .planet__climate,
+        .planet__terrain,
+        .planet__gravity,
+        .planet__surface-water {
+          @include mobilePlanetElement;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:576px) {
+  .planet {
+    width: 60%;
+
+    &__wrapper {
+      .planet__periods {
+        @include mobileBlock;
+
+        .planet__rotation-period,
+        .planet__orbital-period,
+        .planet__diameter {
+          @include mobilePlanetElement;
+          margin-bottom: 0;
+
+          p {
+            margin: 0;
+            font-weight: bold;
+            font-size: $mobileFontSize
+          }
+
+          span {
+            margin-top: .3rem;
+            font-size: $mobileFontSize
+          }
+        }
+      }
+
+      .planet__additional-data {
+        @include mobileBlock;
+        margin-bottom: .5rem;
+
+        .planet__population,
+        .planet__residents,
+        .planet__films {
+          @include mobilePlanetElement;
+        }
+      }
+    }
+
+    h4,
+    p {
+      font-size: $mobileFontSize;
+    }
+  }
+}
+
+@media screen and(max-width:399px) {
+  .planet {
+    width: 70%;
+  }
 }

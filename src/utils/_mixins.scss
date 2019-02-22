@@ -10,3 +10,74 @@
   text-align: center;
   font-family: $secondaryFont;
 }
+
+@mixin planet {
+  border: 3px solid $mainThemeColor;
+  margin: 2rem auto;
+  border-radius: 10px;
+}
+
+@mixin button {
+  height: 2rem;
+  display: block;
+  background: $mainThemeColor;
+  color: $secondaryThemeColor;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  outline-color: $mainThemeColor;
+  font-family: $headerFont;
+  cursor: pointer;
+
+  &:hover {
+    background: $secondaryThemeColor;
+    color: $mainThemeColor;
+  }
+
+  &:focus {
+    outline: 0
+  }
+}
+
+@mixin planetName {
+  width: 100%;
+  height: 3rem;
+  background: $mainThemeColor;
+  font-size: 1.5rem;
+  line-height: 1.8;
+  font-family: $headerFont;
+  text-align: center;
+}
+
+@mixin planetWrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+@mixin planetDetailsWrapper {
+  display: flex;
+  width: 100%;
+  height: 4rem;
+  margin-top: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: .625rem;
+  border-bottom: 2px solid $mainThemeColor;
+}
+
+@mixin planetDetailsUtil {
+  margin: .3125rem 0;
+  font-weight: bold;
+}
+
+@mixin mobileBlock {
+  display: block;
+  margin: 0 auto;
+  height: auto;
+}
+
+@mixin mobilePlanetElement {
+  width: 100%;
+  height: auto;
+  margin-top: .5rem;
+}

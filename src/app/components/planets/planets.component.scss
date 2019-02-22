@@ -16,33 +16,17 @@
     .planet {
       height: 100%;
       width: 90%;
-      border: 3px solid $mainThemeColor;
-      margin: 0 auto;
-      border-radius: 10px;
+      @include planet;
 
       .planet__name {
-        width: 100%;
-        height: 3rem;
-        background: $mainThemeColor;
-        font-size: 1.5rem;
-        line-height: 1.8;
-        font-family: $headerFont;
-        text-align: center;
+        @include planetName;
       }
 
       &__wrapper {
-        width: 90%;
-        margin: 0 auto;
+        @include planetWrapper;
 
         .planet__periods {
-          display: flex;
-          width: 100%;
-          height: 4rem;
-          margin-top: 1rem;
-          justify-content: space-between;
-          align-items: center;
-          padding-bottom: .625rem;
-          border-bottom: 2px solid $mainThemeColor;
+          @include planetDetailsWrapper;
 
           .planet__rotation-period,
           .planet__orbital-period {
@@ -70,8 +54,7 @@
           height: 4rem;
 
           h4 {
-            margin: .3125rem 0;
-            font-weight: bold;
+            @include planetDetailsUtil;
             @include textCenter;
           }
 
@@ -91,8 +74,7 @@
           @include flexItemDisplay;
 
           h4 {
-            margin: .3125rem 0;
-            font-weight: bold;
+            @include planetDetailsUtil;
             @include textCenter;
           }
 
@@ -105,25 +87,7 @@
         .planet__details-button {
           margin: 1rem auto 0;
           width: 40%;
-          height: 2rem;
-          display: block;
-          background: $mainThemeColor;
-          color: $secondaryThemeColor;
-          border: none;
-          border-radius: 5px;
-          text-transform: uppercase;
-          outline-color: $mainThemeColor;
-          font-family: $headerFont;
-          cursor: pointer;
-
-          &:hover {
-            background: $secondaryThemeColor;
-            color: $mainThemeColor;
-          }
-
-          &:focus {
-            outline: 0
-          }
+          @include button;
         }
 
       }
