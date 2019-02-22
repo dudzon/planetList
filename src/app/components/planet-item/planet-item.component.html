@@ -1,28 +1,29 @@
-<div class="planet">
-  <header class="planet__name">{{planet.name}}</header>
-  <div class="planet__wrapper">
-    <div class="planet__periods">
-      <div class="planet__rotation-period">
-        <p>Rotation<br>Period</p>
-        <span>{{planet.rotation_period}}</span>
+<div *ngIf="planet">
+  <div class="planet">
+    <header class="planet__name">{{planet.name}}</header>
+    <div class="planet__wrapper">
+      <div class="planet__periods">
+        <div class="planet__rotation-period">
+          <p>Rotation<br>Period</p>
+          <span>{{planet.rotation_period}}</span>
+        </div>
+        <div class="planet__orbital-period">
+          <p>Orbital<br> Period</p>
+          <span>{{planet.orbital_period}}</span>
+        </div>
       </div>
-      <div class="planet__orbital-period">
-        <p>Orbital<br> Period</p>
-        <span>{{planet.orbital_period}}</span>
+      <div class="planet__climate">
+        <h4>Climate</h4>
+        <p>{{planet.climate | titlecase}}</p>
+      </div>
+      <div class="planet__terrain">
+        <h4>Terrain</h4>
+        <p>{{planet.terrain | titlecase}}</p>
+      </div>
+      <div class="planet__population">
+        <h4>Population</h4>
+        <p>{{planet.population}}</p>
       </div>
     </div>
-    <div class="planet__climate">
-      <h4>Climate</h4>
-      <p>{{planet.climate | titlecase}}</p>
-    </div>
-    <div class="planet__terrain">
-      <h4>Terrain</h4>
-      <p>{{planet.terrain | titlecase}}</p>
-    </div>
-    <div class="planet__population">
-      <h4>Population</h4>
-      <p>{{planet.population}}</p>
-    </div>
-    <button class="planet__details-button" routerLink='/planet/{{planet.name}}'>More</button>
   </div>
 </div>

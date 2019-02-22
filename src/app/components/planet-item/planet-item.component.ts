@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Planets } from "./../../../models/Planets";
+import { Planet } from "./../../../models/Planet";
+import { ActivatedRoute } from "@angular/router";
+import { PlanetService } from "./../../services/planet.service";
 
 @Component({
   selector: "app-planet-item",
@@ -7,8 +9,23 @@ import { Planets } from "./../../../models/Planets";
   styleUrls: ["./planet-item.component.scss"]
 })
 export class PlanetItemComponent implements OnInit {
-  @Input() planet: Planets;
-  constructor() {}
+  planet: Planet;
 
-  ngOnInit() {}
+  constructor(
+    private route: ActivatedRoute,
+    private planetService: PlanetService
+  ) {}
+
+  ngOnInit() {
+    this.getPlanet();
+  }
+
+  //  Pass the name as id param and show the component with data
+
+  getPlanet(): void {
+    const name = this.route.snapshot.paramMap.get("id");
+    this.planetService
+      .getPlanet(name)
+      .subscribe(planet => (this.planet = planet));
+  }
 }
