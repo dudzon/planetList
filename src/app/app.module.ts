@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 import { PlanetsComponent } from "./components/planets/planets.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { PlanetItemComponent } from "./components/planet-item/planet-item.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { PlanetItemComponent } from "./components/planet-item/planet-item.compon
     HeaderComponent,
     PlanetItemComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
