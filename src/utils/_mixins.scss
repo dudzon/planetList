@@ -6,6 +6,12 @@
   width: 100%;
 }
 
+@mixin centerWrapper {
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+}
+
 @mixin textCenter {
   text-align: center;
   font-family: $secondaryFont;
