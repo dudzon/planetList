@@ -28,6 +28,7 @@ export class PlanetsComponent implements OnInit {
       ];
     });
   }
+
   ngOnInit() {
     this.getPlanets();
   }

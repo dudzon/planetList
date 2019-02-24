@@ -3,6 +3,8 @@ import { Planet } from "./../../../models/Planet";
 import { ActivatedRoute } from "@angular/router";
 import { PlanetService } from "./../../services/planet.service";
 import { Location } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: "app-planet-item",
@@ -10,39 +12,63 @@ import { Location } from "@angular/common";
   styleUrls: ["./planet-item.component.scss"]
 })
 export class PlanetItemComponent implements OnInit {
-  planet: Planet;
-  // residents: any;
-
-  // checkResidents() {
-  //   if (!this.planet.residents) {
-  //     this.residents = this.planet.residents.push("Nothing");
-  //     console.log(this.residents);
-  //   }
-
-  //   return this.residents;
-  // }
-
-  // films: string[] = this.planet.films;
-
+  planet: any;
+  films: any;
+  residents: any;
   constructor(
     private route: ActivatedRoute,
     private planetService: PlanetService,
-    private location: Location
+    private location: Location,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
     this.getPlanet();
-    // this.checkResidents();
   }
-
-  //  Pass the name as id param and show the component with data
-
+  //  Fetch data for individual planet and display them on screen
   getPlanet(): void {
     const name = this.route.snapshot.paramMap.get("id");
-    this.planetService
-      .getPlanet(name)
-      .subscribe(planet => (this.planet = planet));
+    this.planetService.getPlanet(name).subscribe(res => {
+      const toArr = Array.from(Object.values(res["results"]));
+      this.planet = [...toArr][0];
+
+      //  Show  films on individual planet card.
+      this.films = this.showAdditionalData(this.planet.films, "title", "films");
+
+      //  Show  residents  on individual planet card.
+      this.residents = this.showAdditionalData(
+        this.planet.residents,
+        "name",
+        "residents"
+      );
+    });
   }
+  //  Fetch addidtional data from server : films or residents
+
+  fetchAdditionalData(collection: string[]) {
+    if (collection.length > 0) {
+      let requests = [];
+      for (let item of collection) {
+        let requestName = this.http.get(item);
+        requests.push(requestName);
+      }
+      return requests;
+    }
+    return;
+  }
+  //  Show additional data on the planet card
+  showAdditionalData(collection: string[], property: string, data: string) {
+    if (collection.length > 0) {
+      forkJoin(this.fetchAdditionalData(collection)).subscribe(results => {
+        let arr = [];
+        for (let i = 0; i < results.length; i++) {
+          arr.push(results[i][property]);
+        }
+        this[data] = [...arr];
+      });
+    }
+  }
+
   goBack(): void {
     this.location.back();
   }

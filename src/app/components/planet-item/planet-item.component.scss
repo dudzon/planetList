@@ -1,6 +1,7 @@
 @import "./../../../utils/utils";
 
 .planet {
+  min-height: fit-content;
   height: 60vh;
   width: 50%;
   @include planet;
@@ -75,6 +76,9 @@
       @include planetDetailsWrapper;
       border-bottom: none;
       padding-bottom: 0;
+      align-items: flex-start;
+      height: auto;
+      margin-bottom: 1rem;
 
       .planet__residents,
       .planet__films,
@@ -175,5 +179,12 @@
 @media screen and(max-width:399px) {
   .planet {
     width: 70%;
+  }
+}
+
+
+@-moz-document url-prefix() {
+  .planet {
+    height: 70vh;
   }
 }

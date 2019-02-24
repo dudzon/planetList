@@ -9,7 +9,7 @@ import { forkJoin } from "rxjs";
 })
 export class PlanetService {
   constructor(private http: HttpClient) {}
-  private planetsUrl: string = "https://swapi.co/api/planets/?page=";
+  planet: Planet[];
   //  Get Planets
   getPlanets(): Observable<any> {
     let response1 = this.http.get("https://swapi.co/api/planets/?page=1");
@@ -28,12 +28,12 @@ export class PlanetService {
       response6,
       response7
     ]);
-    // return this.http.get<any>(this.planetsUrl);
   }
 
   //  Get single planet
 
   getPlanet(name: string): Observable<Planet> {
-    return of(Planets.find(planet => planet.name === name));
+    const url = `https://swapi.co/api/planets/?search=${name}`;
+    return this.http.get<Planet>(url);
   }
 }
