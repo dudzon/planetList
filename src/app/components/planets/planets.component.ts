@@ -10,9 +10,17 @@ import { Subscriber } from "rxjs";
   styleUrls: ["./planets.component.scss"]
 })
 export class PlanetsComponent implements OnInit {
-  public planets: Planet[];
+  /**
+   * Represents a Planet List.
+   * @param {Array<Object>} planets - List of all planets.
+   * @param {Array<Object>} showAllPanets - Copy of list of all planets.
+   * @param {boolean} allPlanetsVisible -
+   */
+  planets: Planet[];
+  showAllPlanets: Planet[];
+  allPlanetsVisible: boolean = true;
+  errorMsg: string = "";
   constructor(private planetService: PlanetService) {}
-
   //  Fetch planets and display them on screen
 
   getPlanets(): void {
@@ -29,7 +37,43 @@ export class PlanetsComponent implements OnInit {
     });
   }
 
+  //  Filter planet
+  searchPlanet(name) {
+    //  copy exisiting Planet array
+    this.showAllPlanets = this.planets.slice();
+
+    //  find the planet
+    let result = this.planets.filter(
+      planet => planet.name.toLowerCase() === name
+    );
+
+    // update planet Array
+    this.planets = result;
+
+    //  display the button to show default list of planets
+    this.allPlanetsVisible = false;
+
+    if (this.planets.length == 0) {
+      this.searchPlanetsAgain();
+    }
+  }
   ngOnInit() {
     this.getPlanets();
+  }
+
+  // Show all planets again ont the screen after filtering planets
+  showPlanets() {
+    //  Restore default list of planets
+    this.planets = this.showAllPlanets;
+
+    //  hide the button  displaying all planets
+    this.allPlanetsVisible = true;
+  }
+  searchPlanetsAgain() {
+    this.errorMsg = "No planets found. Search again in a second";
+    setTimeout(() => {
+      this.showPlanets();
+      this.errorMsg = "";
+    }, 2000);
   }
 }

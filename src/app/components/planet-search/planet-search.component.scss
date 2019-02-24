@@ -1,0 +1,61 @@
+@import "./../../../utils/utils";
+
+.planet-search {
+  width: 100%;
+  height: auto;
+  min-height: fit-content;
+  margin-bottom: 2rem;
+  z-index: -1;
+
+  &__wrapper {
+    @include centerWrapper;
+    display: flex;
+    justify-content: center;
+
+    .planet-search__form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+
+      .planet-search__input {
+        padding: 0 .2rem;
+        border: none;
+        font-family: $headerFont;
+        width: 12rem;
+        font-size: 1.25rem;
+      }
+
+      .planet-search__input::placeholder {
+        font-family: $headerFont;
+        color: #000;
+        background-color: #fff;
+      }
+
+      .planet-search__button {
+        @include button;
+        width: 5rem;
+        margin-left: 2rem;
+      }
+    }
+
+    // Planet wrapper ends
+  }
+
+  .planet__error {
+    @include textCenter;
+    color: red;
+    margin: 0
+  }
+}
+
+@media screen and (max-width:499px) {
+  .planet-search {
+    .planet-search__form {
+      .planet-search__input {
+        font-size: $mobileFontSize;
+      }
+    }
+  }
+}

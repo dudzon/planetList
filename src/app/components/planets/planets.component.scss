@@ -5,9 +5,7 @@
   margin: 7rem 0 2rem;
 
   &__wrapper {
-    width: 80%;
-    margin: 0 auto;
-    height: 100%;
+    @include centerWrapper;
     display: grid;
     grid-template-columns: repeat(4, minmax(200px, 300px));
     grid-auto-rows: 400px;
@@ -90,6 +88,11 @@
           @include button;
         }
 
+      }
+
+      .planet__showAllBtn {
+        @include button;
+        margin: 3rem auto 0;
       }
 
       //   Planet wrapper ends
