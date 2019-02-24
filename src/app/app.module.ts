@@ -7,12 +7,18 @@ import { PlanetsComponent } from "./components/planets/planets.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { PlanetItemComponent } from "./components/planet-item/planet-item.component";
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 import {
   NgxUiLoaderModule,
   NgxUiLoaderHttpModule,
   NgxUiLoaderConfig,
   SPINNER
 } from "ngx-ui-loader";
+import { PlanetSearchComponent } from "./components/planet-search/planet-search.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ReactiveFormsModule } from "@angular/forms";
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   fgsType: SPINNER.squareJellyBox
@@ -22,14 +28,20 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AppComponent,
     PlanetsComponent,
     HeaderComponent,
-    PlanetItemComponent
+    PlanetItemComponent,
+    PlanetSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    NgxUiLoaderHttpModule.forRoot({ showForeground: true })
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
+    FormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
