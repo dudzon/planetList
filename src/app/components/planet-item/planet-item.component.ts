@@ -12,6 +12,12 @@ import { forkJoin } from "rxjs";
   styleUrls: ["./planet-item.component.scss"]
 })
 export class PlanetItemComponent implements OnInit {
+  /**
+   * Represents an individual planet card .
+   * @param {any} planet - Current planet .
+   * @param {any} films - List of films with current planet .
+   * @param {any} residents - List of residents living in the current planet .
+   */
   planet: any;
   films: any;
   residents: any;
@@ -68,7 +74,7 @@ export class PlanetItemComponent implements OnInit {
       });
     }
   }
-
+  //  go back  to list of all planets
   goBack(): void {
     this.location.back();
   }
