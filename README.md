@@ -1,3 +1,7 @@
+Simple Angular 7 application to manipulate data from [Star Wars API](https://swapi.co/)
+
+Live demo is [HERE](https://planetlist.netlify.com)
+
 # PlanetList
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
