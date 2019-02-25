@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Planets } from "./../mock-planets";
 import { Planet } from "./../../models/Planet";
 import { Observable, of } from "rxjs";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { forkJoin } from "rxjs";
 @Injectable({
   providedIn: "root"
@@ -10,6 +10,7 @@ import { forkJoin } from "rxjs";
 export class PlanetService {
   constructor(private http: HttpClient) {}
   planet: Planet[];
+
   //  Get Planets
   getPlanets(): Observable<any> {
     let response1 = this.http.get("https://swapi.co/api/planets/?page=1");

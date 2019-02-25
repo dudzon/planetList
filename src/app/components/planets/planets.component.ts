@@ -29,6 +29,8 @@ export class PlanetsComponent implements OnInit {
   }
 
   //  Fetch planets and display them on screen
+
+  // }
   getPlanets(): void {
     this.planetService.getPlanets().subscribe(res => {
       this.planets = [
@@ -40,11 +42,8 @@ export class PlanetsComponent implements OnInit {
         ...res[5].results,
         ...res[6].results
       ];
-    });
-    //  Paginator -  set default number of planets
-    setTimeout(() => {
       this.setPlanetsChunk();
-    }, 1000);
+    });
   }
 
   //  Filter planet
