@@ -4,7 +4,6 @@
       <mat-form-field>
         <input matInput class="planet-search__input" type="text" name="planetName" placeholder="Find Planet"
           [(ngModel)]="planetName" #reference>
-        <mat-error *ngIf="text.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
       <button (click)="reference.value=''" class="planet-search__button">Search</button>
     </form>
