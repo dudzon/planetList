@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Planet } from "./../../../models/Planet";
 import { PlanetService } from "./../../services/planet.service";
-
-import { Subscriber } from "rxjs";
+import { PageEvent } from "@angular/material";
 
 @Component({
   selector: "app-planets",
@@ -10,19 +9,26 @@ import { Subscriber } from "rxjs";
   styleUrls: ["./planets.component.scss"]
 })
 export class PlanetsComponent implements OnInit {
-  /**
-   * Represents a Planet List.
-   * @param {Array<Object>} planets - List of all planets.
-   * @param {Array<Object>} showAllPanets - Copy of list of all planets.
-   * @param {boolean} allPlanetsVisible -
-   */
   planets: Planet[];
-  showAllPlanets: Planet[];
+  chunks: Planet[];
   allPlanetsVisible: boolean = true;
   errorMsg: string = "";
-  constructor(private planetService: PlanetService) {}
-  //  Fetch planets and display them on screen
 
+  // Paginator Data
+  length: number = 61;
+  pageSize: number = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageEvent: PageEvent;
+  activePageDataChunk = [];
+
+  constructor(private planetService: PlanetService) {}
+
+  //  it all starts here :)
+  ngOnInit() {
+    this.getPlanets();
+  }
+
+  //  Fetch planets and display them on screen
   getPlanets(): void {
     this.planetService.getPlanets().subscribe(res => {
       this.planets = [
@@ -35,45 +41,65 @@ export class PlanetsComponent implements OnInit {
         ...res[6].results
       ];
     });
+    //  Paginator -  set default number of planets
+    setTimeout(() => {
+      this.setPlanetsChunk();
+    }, 1000);
   }
 
   //  Filter planet
-  searchPlanet(name) {
-    //  copy exisiting Planet array
-    this.showAllPlanets = this.planets.slice();
 
-    //  find the planet
+  searchPlanet(name) {
+    //  find the planet from not mutated initial planet array
     let result = this.planets.filter(
       planet => planet.name.toLowerCase() === name
     );
 
-    // update planet Array
-    this.planets = result;
+    // update chunks array to display result on page
+    this.chunks = result;
 
     //  display the button to show default list of planets
     this.allPlanetsVisible = false;
 
-    if (this.planets.length == 0) {
+    //  When no planets have been found, show all planets again after two seconds
+    if (this.chunks.length == 0) {
       this.searchPlanetsAgain();
     }
   }
-  ngOnInit() {
-    this.getPlanets();
-  }
 
-  // Show all planets again ont the screen after filtering planets
+  // Show all planets again on the screen after filtering planets
   showPlanets() {
     //  Restore default list of planets
-    this.planets = this.showAllPlanets;
+    this.chunks = this.activePageDataChunk;
 
     //  hide the button  displaying all planets
     this.allPlanetsVisible = true;
   }
+
+  // search  planets again when no results have been found
   searchPlanetsAgain() {
     this.errorMsg = "No planets found. Search again in a second";
     setTimeout(() => {
       this.showPlanets();
       this.errorMsg = "";
     }, 2000);
+  }
+
+  //  set number of planets according to match paginator page size value
+  setPlanetsChunk() {
+    //  copy planets array to manipulate data in paginator
+    this.chunks = [...this.planets];
+
+    //  set initial number of displayed planets
+    this.activePageDataChunk = this.chunks.slice(0, this.pageSize);
+
+    //   display planets on the page
+    this.chunks = this.activePageDataChunk;
+  }
+  //  event fired when user wants to to change number of planets on page
+  onPageChanged(e) {
+    const offset = (e.pageIndex + 1 - 1) * e.pageSize;
+    this.activePageDataChunk = this.planets.slice(offset).slice(0, e.pageSize);
+    this.chunks = this.activePageDataChunk;
   }
 }
