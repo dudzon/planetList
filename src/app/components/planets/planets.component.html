@@ -35,8 +35,9 @@
         <button class="planet__details-button" routerLink="/planet/{{ chunk.name }}">
           More
         </button>
-        <button (click)="showPlanets()" *ngIf="!allPlanetsVisible" class="planet__showAllBtn">Show all planets</button>
+        <!-- <button (click)="showPlanets()" *ngIf="!allPlanetsVisible" class="planet__showAllBtn">Show all planets</button> -->
       </div>
     </div>
+    <button (click)="showPlanets()" *ngIf="!allPlanetsVisible" class="planet__showAllBtn">Show all planets</button>
   </div>
 </section>
